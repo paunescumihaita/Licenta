@@ -26,6 +26,8 @@ namespace api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IUtilizatori,UtilizatoriRepo>();
+            services.AddScoped<IPacienti,PacientiRepo>();
+            services.AddScoped<ITratament,TratamentRepo>();
             services.AddControllers();
         }
 

@@ -4,73 +4,28 @@ import { StyleSheet, Text,Button, View, TextInput, TouchableOpacity, Image,Image
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import axios from 'axios';
+import { color, concat } from 'react-native-reanimated';
+import { SearchBar } from 'react-native-elements';
+import './Global.js'
+import Home from './Home1.js'
+import d from './Screen1.js'
 
-export default class Main extends Component {
+export default class Main extends React.Component {
 
   constructor(props) {  
     super(props);  
-    this.handleClick = this.handleClick.bind(this);
-    this.customFunction = this.customFunction.bind(this);
+    
   }
-  customFunction()
-  {
-    console.log("hgfdhsv");
-  }
-
-  handleClick() {
-    axios.get(`https://l05.azurewebsites.net/Utilizatori/Get`)
-      .then(res => {
-        const persons = res.data;
-        persons.forEach(a => {
-          console.log(a.partitionKey)
-        });
-      
-        this.setState({ persons });
-      })
-  }
-
+  
   render() {
-    const Tab = createBottomTabNavigator();
+    const { navigate } = this.props.navigation;
 
- function HomeScreen({ navigation }) {
-const [people, setpeople]=useState([
-  {name: "grsd", age:"22"},
-  {name: "Mifdfhai", age:"23"},
-  {name: "Mifgvdfgvhai", age:"24"},
-  {name: "Misdvsdfvhai", age:"25"},
-  {name: "Miffdddhai", age:"26"},
-  {name: "Mihfvfvdai", age:"27"},  {name: "Mihai", age:"29"},
-  {name: "Mihai", age:"28"},
-]);
-
-
-
-
-  return (
-    <ImageBackground source={require('./Imagini/bc.png')} style={styles.background}>
-    <View style={styles.bcvi}>
-     
-     <ScrollView>
-       {
-         people.map(item=>{
-           return (
-         <View key={item.age} >
-         <TouchableOpacity  style={styles.Btn}   >
-     
-         <Text style={styles.card}>{item.name}</Text>
-       
-        </TouchableOpacity>
-         
-         </View>
-           )
-       })}
-     </ScrollView>
-
-
-    </View>
-    </ImageBackground>
-  );
+const Tab = createBottomTabNavigator();
+function l(n)
+{
+return d(navigate);
 }
+
     function SettingsScreen({ navigation }) {
       return (
         <ImageBackground source={require('./Imagini/bc.png')} style={styles.background}>
@@ -86,28 +41,36 @@ const [people, setpeople]=useState([
     <ImageBackground source={require('./Imagini/bc.png')} style={styles.background}>
 
       <View style={styles.container}>
+      
         
         <NavigationContainer background="#000">
+
       <Tab.Navigator 
+    
         initialRouteName="Feed"
+      
         tabBarOptions={{
-          activeTintColor: '#42f44b',
-        }}>
+          activeTintColor: '#1FD2D1',
+          
+        }
+        }>
         <Tab.Screen
        
           name="HomeStack"
+          style={styles.taa}
           
-          component={HomeScreen}
-         // onPress={this.handleClick}
+          component={l}
+        //  onPress={this.handleClick}
 
           options={{       
-            tabBarLabel: 'Home',
+            tabBarLabel: 'Pacienti',
+           
             tabBarIcon: ({focused}) => {
             return (
               <Image
                 resizeMode={'contain'}
                 source=
-                  {require('./Imagini/ic_password.png')} style={styles.ic_user}
+                  {require('./Imagini/pacienti.png')} style={styles.ic_user}
          
               />
             );
@@ -116,12 +79,83 @@ const [people, setpeople]=useState([
             
           }}  />
         <Tab.Screen
-          name="SettingsStack"
+          name="home"
           
           component={SettingsScreen}
           options={{
-            tabBarLabel: 'Settings',
+            tabBarLabel: 'Tratament Ore',
             tabBarVisible:true,
+            tabBarIcon: ({focused}) => {
+            return (
+              <Image
+                resizeMode={'contain'}
+                source=
+                  {require('./Imagini/clock.png')} style={styles.clock}
+         
+              />
+            );
+            
+            }
+           
+          }} />
+           <Tab.Screen
+          name="SettingsStack"
+          
+          component={Home}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarVisible:true,
+            tabBarIcon: ({focused}) => {
+            return (
+              <Image
+                resizeMode={'contain'}
+                source=
+                  {require('./Imagini/home.png')} style={styles.ic_user}
+         
+              />
+            );
+            
+            }
+           
+          }} />
+           <Tab.Screen
+          name="SettingsStack1"
+          
+          component={SettingsScreen}
+          options={{
+            tabBarLabel: 'Setari',
+            tabBarVisible:true,
+            tabBarIcon: ({focused}) => {
+            return (
+              <Image
+                resizeMode={'contain'}
+                source=
+                  {require('./Imagini/set.png')} style={styles.set}
+         
+              />
+            );
+            
+            }
+           
+          }} />
+           <Tab.Screen
+          name="SettingsStack2"
+          
+          component={SettingsScreen}
+          options={{
+            tabBarLabel: 'About',
+            tabBarVisible:true,
+            tabBarIcon: ({focused}) => {
+            return (
+              <Image
+                resizeMode={'contain'}
+                source=
+                  {require('./Imagini/about.png')} style={styles.set}
+         
+              />
+            );
+            
+            }
            
           }} />
       </Tab.Navigator>
@@ -131,10 +165,11 @@ const [people, setpeople]=useState([
     );
   }
 }
+ 
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
     
  //   alignItems: 'center',
    // justifyContent: 'center',
@@ -143,31 +178,60 @@ const styles = StyleSheet.create({
     width:"100%",
     height:"100%"
   },
+  clock:{
+    width:35,
+    height:35,
+    marginBottom:"1%"
+  },
+  set:{
+    width:35,
+    height:35,
+    marginBottom:"1%"
+  },
   ic_user:{
     width:39,
      height:39,
+     marginBottom:"1%"
+   
   
+  },
+  taa:{
+    marginBottom:8
   },
   card:{
    // width:350,
     
-   alignItems: 'center',
-    padding:2,
+   alignItems: 'flex-start',
+   // padding:2,
 
-    justifyContent: 'center',
+  //  justifyContent: 'center',
      fontSize:16,
   //  marginBottom:10 
   },
   bcvi:{
-    flex: 1, justifyContent: 'center', alignItems: 'center',marginTop:"9%",width:"100%",height:"100%"
+     justifyContent: 'center',width:"100%",height:"100%", alignItems: 'center',
   },
+  bar:{
+   
+   
+   // alignItems: 'center',
+   backgroundColor :"#fff",
+ color:"#fff"
+   // marginVertical:5
+  },
+ vv:{
+  marginTop:20
+ },
+ 
    Btn:{
-    width:350, alignItems: 'center',
+    width:350, 
+    alignItems: 'center',
   //  height:70,
     borderRadius:10,
     backgroundColor:"#ffff",
     padding:10,
-    marginVertical:5
+    marginVertical:5,
+    
   
     
   },

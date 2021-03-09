@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Desktop\\Aplicatie\\api\\api.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\Aplicatie\\Licenta\\api\\api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Desktop\\Aplicatie\\api\\api.csproj": {
+    "C:\\Users\\Admin\\Desktop\\Aplicatie\\Licenta\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Aplicatie\\api\\api.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Aplicatie\\Licenta\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\Aplicatie\\api\\api.csproj",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\Aplicatie\\Licenta\\api\\api.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\Aplicatie\\api\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\Aplicatie\\Licenta\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

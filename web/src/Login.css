@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .outer {
+    min-height: 100vh;
+    display: flex;
+    font-weight: 400;
+    font-family: sans-serif;
+    background: white;
+    background-image: url("./bc.jpg");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+  }
+  
+  body,
+  html,
+  .App,
+  #root,
+  .outer {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .navbar-light {
+    background-color: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  }
+  
+  .outer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .inner {
+    width: 450px;
+    margin: auto;
+    background: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    padding: 40px 55px 45px 55px;
+    border-radius: 15px;
+    transition: all 0.3s;
+  }
+  
+  .outer .form-control:focus {
+    border-color: #167bff;
+    box-shadow: none;
+  }
+  
+  .outer h3 {
+    text-align: center;
+    margin: 0;
+    line-height: 1;
+    padding-bottom: 20px;
+  }
+  
+  .custom-control-label {
+    font-weight: 400;
+  }
+  
+  .forgot-password,
+  .forgot-password a {
+    text-align: right;
+    font-size: 13px;
+    padding-top: 10px;
+    color: #7f7d7d;
+    margin: 0;
+  }
+  
+  .forgot-password a {
+    color: #167bff;
+  }
+  
+  .admin {
+    padding: 100px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: left;
+    height: 100%;
+  }
+  
+  .map {
+    height: 100%;
+  }
+  
+  .datas {
+    height: 100%;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px;
+  }
+  .btn {
+    width: 50%;
+    height: 40px;
+  }
+  .info{
+    padding: 0;
+      height: 70vh;
+      width: 100%;
+      overflow-y: scroll;
+  }
+  .navbar-brand{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    align-items: center;
+  }
+  .navbar-brand img{
+    width: 100px;
+    padding: 0px 5px;
+    margin: 10px;
+  }
+  .navbar-brand .title{
+    padding-top: 10px;
+  }
+  
+  .mySlide{
+    position: absolute;
+    z-index: 1000;
+    margin-top: 0;
+  }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qHKDp2P2+R7K4svVJEj1fL925igsX4YSJvcO+K1VhFgXS4OaxC5qWSWZfS3QZLTPPCkerlJi9bVmRGw75ZSSGQ==",
+  "dgSpecHash": "9EVlf7ahviI3oMlcNhPUPGca91ew/PQVCTKqGKbepThL3VhqBGNceP23WXeSzSWEuOiF94yJ0PwtrvGPsQZSpQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Desktop\\Aplicatie\\api\\api.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\Aplicatie\\Licenta\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

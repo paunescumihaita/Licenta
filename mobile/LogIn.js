@@ -18,7 +18,7 @@ export default class LogIn extends Component {
 
    
    handleClick(){
-     console.log("gb);")
+   
       var obj={PartitionKey :this.state.username, RowKey : this.state.parola };
       const { navigate } = this.props.navigation;
 
@@ -26,7 +26,7 @@ export default class LogIn extends Component {
   
     axios.post(`https://l05.azurewebsites.net/Utilizatori/LogIn`, obj )
       .then(res => {
-        console.log("mfgvjhfgedgvfedsvhbfdb "+res.data);
+        
        
 
 

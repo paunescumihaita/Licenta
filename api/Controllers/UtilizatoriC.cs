@@ -8,7 +8,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace api{
     [ApiController]
-    [Route("{utilizatori}")]
+    [Route("utilizatori")]
     public class UtilizatoriC : ControllerBase{
         private IUtilizatori _u;
         
@@ -17,7 +17,7 @@ namespace api{
             _u=u;
         }
 
-        [HttpGet("{get}")]
+        [HttpGet("get")]
         public async Task<IEnumerable<Utilizatori>> Get()
         {
             return await _u.GetAll();
