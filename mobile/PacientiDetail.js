@@ -15,7 +15,7 @@ export default class PacientiDetail  extends React.Component
   handleClick( a,b) {
     if(b=="1")
     {
-      axios.get(`https://l05.azurewebsites.net/tratament/get/`+ a+'/'+'0')
+      axios.get(`https://l05.azurewebsites.net/tratament/get/`+ a+'/'+global.mihai+'/'+'0')
       .then(res => {
         const tratament = res.data;
        
@@ -26,14 +26,16 @@ export default class PacientiDetail  extends React.Component
       })
     }
     else{
-      axios.get(`https://l05.azurewebsites.net/tratament/get/`+ a+'/'+'1')
+      axios.get(`https://l05.azurewebsites.net/tratament/get/`+ a+'/'+global.mihai+'/'+'1')
       .then(res => {
         const tratament = res.data;
        
         this.setState({ tratament });
  
       })
-  }
+    }
+     
+  
 
 
 
@@ -76,9 +78,9 @@ console.log("initttt")
        var d=require('./Imagini/add2.png');
        var s=true;
      
-     function f(a)
+     function f(c)
      {
-      if(a=='0')
+      if(c=='0')
       return require('./Imagini/add2.png');
       else
       return require('./Imagini/delete1.png');
@@ -96,7 +98,9 @@ console.log("initttt")
         <Text style={styles.card}>{(a.prenume)}</Text>
         <View style={styles.vert1}>
         <TouchableOpacity  style={styles.Btn} onPress={()=>g()}    >
-        {console.log("ff1")}
+        {
+        console.log(global.mihai)
+        }
        <Text style={styles.varsta}>{("Varsta") }</Text>
        <Text style={styles.card}>{(a.varsta)}</Text>
       </TouchableOpacity>
@@ -123,7 +127,7 @@ console.log("initttt")
          
 
           return(
-            <TouchableOpacity  style={styles.Btn1}    >
+            <TouchableOpacity  key={item.partitionKey} style={styles.Btn1}    >
             <View style={styles.scvert}>
               <View style={styles.med} >
                 <Text style={styles.trat}>{(item.idMedicament1)}</Text>
@@ -179,6 +183,9 @@ const styles = StyleSheet.create({
     add:{
       width:60,
       height:60,
+      
+     
+     
      
     },
     nume:{
@@ -224,6 +231,8 @@ const styles = StyleSheet.create({
    },
    scvert:{
     flexDirection:'row',
+  
+    
    },
 
    vert:{
@@ -261,6 +270,7 @@ const styles = StyleSheet.create({
     med:{
     marginLeft:9,
     alignItems: 'center',
+    width:"31%"
     },
     Btn2:{
       width:60, 

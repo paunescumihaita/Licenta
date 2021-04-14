@@ -28,6 +28,8 @@ namespace api
             services.AddScoped<IUtilizatori,UtilizatoriRepo>();
             services.AddScoped<IPacienti,PacientiRepo>();
             services.AddScoped<ITratament,TratamentRepo>();
+            services.AddScoped<IComanda,ComandaRepo>();
+            services.AddScoped<ITransmisie,TransmisieRepo>();
             services.AddControllers();
         }
 

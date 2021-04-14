@@ -9,12 +9,19 @@ import { SearchBar } from 'react-native-elements';
 import './Global.js'
 
 
+    
 
 export default  function Home({ navigation }) {
     const [search, setSearch] = useState('');
     const [people, setpeople]=useState([]);
-    
-    
+    const [p, setp]=useState([]);
+    var cnp="";
+    var salon="";
+
+    axios.get('https://l05.azurewebsites.net/pacienti/get')
+        .then(res => {
+        setp(res.data);
+       })
     axios.get(`https://l05.azurewebsites.net/tratament/icon`)
           .then(res => {
              //persons = res.data;
@@ -31,16 +38,41 @@ export default  function Home({ navigation }) {
       
            {
             people.map(item=>{
-              const a= item.prenume;
+              const a= item.rowKey;
+              var nume, prenume, diagnostic ;
+              cnp=cnp+"/"+a;
+              salon=salon+"/"+item.idDoctor;
+              
+              p.map(i=>{
+                if(i.partitionKey == item.rowKey)
+                {
+                  nume=i.rowKey;
+                  prenume=i.prenume;
+                  diagnostic=i.diagnostic;
+
+                }
+              }
+              )
+         
              
                return (
+                 
+               
+
+                 
              <View key={item.partitionKey} >
              <TouchableOpacity  style={styles.Btn}  // onPressIn={()=>g(item.partitionKey)}  
              >
            
-             <Text style={styles.card}>{(item.rowKey +" "+item.prenume) }</Text>
+             <Text style={styles.card}>{(nume +" "+prenume) }</Text>
           
-             <Text style={styles.card}>{(item.diagnostic)}</Text>
+             <Text style={styles.card}>{(item.partitionKey)}</Text>
+             <Text style={styles.card}>{(item.idMedicament1)}</Text>
+             <Text style={styles.card}>{(item.idMedicament2)}</Text>
+             <Text style={styles.card}>{(item.idMedicament3)}</Text>
+          
+           
+
            
             </TouchableOpacity>
     
@@ -50,7 +82,7 @@ export default  function Home({ navigation }) {
                )
            })}
          </ScrollView>
-         <TouchableOpacity  style={styles.Btn}  // onPressIn={()=>g(item.partitionKey)}  
+         <TouchableOpacity  style={styles.Btn}   onPressIn={()=>g(p)}  
          >
            
            <Text style={styles.card}>{("Plaseaza Tratament") }</Text>
@@ -62,7 +94,30 @@ export default  function Home({ navigation }) {
         </View>
         </ImageBackground>
       );
+
+     function g()
+      {
+      
+        
+        console.log("gggg");
+        people.map(element=>{
+          
+          
+         axios.get('https://l05.azurewebsites.net/tratament/change')
+            .then(res => {
+              
+              console.log(res);
+           
+              
+            })
+      });
+        
+      
+      }
+
     }
+
+
 
     
 const styles = StyleSheet.create({

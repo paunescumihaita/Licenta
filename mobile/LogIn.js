@@ -104,20 +104,7 @@ const styles = StyleSheet.create({
     color:'#000',
     
   },
-  input1:{
-    width:"70%",
-    backgroundColor:"#ffff",
-    padding:15,
-    marginBottom:10 
-  },
-  input2:{
  
-    width:"70%",
-    backgroundColor:"#ffff",
-    padding:15,
-    marginBottom:10 ,
-    
-  },
   LoginBtn:{
     width:"45%",
     
@@ -149,11 +136,26 @@ borderRadius:9,
     justifyContent:"space-between",
    
   },
-  
+  input1:{
+    width:"70%",
+    height:"75%",
+    backgroundColor:"#ffff",
+    padding:15,
+    marginBottom:10 
+  },
+  input2:{
+ 
+    width:"70%",
+    height:"75%",
+    backgroundColor:"#ffff",
+    padding:15,
+    marginBottom:10 ,
+    
+  },
 
 ic_user:{
-  width:47,
-   height:47,
+  width:50,
+  height:"75%",
    backgroundColor:"#fff"
 
   

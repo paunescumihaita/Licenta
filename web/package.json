@@ -1,34 +1,45 @@
 {
   "name": "web",
-  "homepage": "http://paunescumihai.ro",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.6.3",
-    "mdbreact": "^5.0.1",
-    "react": "^17.0.1",
-    "react-bootstrap-buttons": "^1.0.0",
-    "react-bootstrap-form": "^0.1.4-beta6",
-    "react-dom": "^17.0.1",
-    "react-native": "^0.63.4",
-    "react-native-background-image": "^1.0.2",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.2",
-    "web-vitals": "^1.1.0"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "web": "react-scripts start",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "@babel/preset-react": "^7.13.13",
+    "@react-navigation/bottom-tabs": "^5.11.9",
+    "@react-navigation/native": "^5.9.4",
+    "axios": "^0.21.1",
+    "expo-status-bar": "^1.0.3",
+    "mdbreact": "^5.0.2",
+    "react": "17.0.1",
+    "react-dom": "^17.0.2",
+    "react-native": "0.64.0",
+    "react-native-dashboard": "^0.0.5",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-safe-area-context": "^3.2.0",
+    "react-native-screens": "^3.1.1",
+    "react-native-web": "^0.15.6",
+    "react-navigation": "^4.4.4",
+    "react-navigation-stack": "^2.10.4",
+    "react-router-native": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.13.15",
+    "@babel/runtime": "7.13.10",
+    "@react-native-community/eslint-config": "2.0.0",
+    "eslint": "7.14.0",
+    "metro-react-native-babel-preset": "0.64.0",
+    "react-scripts": "^4.0.3",
+    "react-test-renderer": "17.0.1"
+  },
+  "jest": {
+    "preset": "react-native"
   },
   "browserslist": {
     "production": [

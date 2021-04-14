@@ -8,6 +8,7 @@ import { color, concat } from 'react-native-reanimated';
 import { SearchBar } from 'react-native-elements';
 import './Global.js'
 import Home from './Home1.js'
+import Time from './Time.js'
 import d from './Screen1.js'
 
 export default class Main extends React.Component {
@@ -81,7 +82,7 @@ return d(navigate);
         <Tab.Screen
           name="home"
           
-          component={SettingsScreen}
+          component={Time}
           options={{
             tabBarLabel: 'Tratament Ore',
             tabBarVisible:true,
