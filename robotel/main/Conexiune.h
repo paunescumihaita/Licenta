@@ -10,8 +10,8 @@
 
 
 
-const String ssid = "UPCB86ECCC";
-const String password = "vtFmam2wyJfe";
+const String ssid = "iPhone";
+const String password = "paunescu69";
 const String path = "/a.php";
 const String server = "paunescumihai.ro";
 const String request = String("GET ") + path + " HTTP/1.1\r\n" + "Host:" + server + "\r\n" + "Connection: keep-alive\r\n\r\n";

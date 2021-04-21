@@ -20,14 +20,13 @@ a();
 void a()
 {
   int i=0;
-  while(1)
-  {
+  
     i++;
-    Serial.println(i);
-    if(i>2000){
+    Serial.println("  ");
+ 
     Conexiune();
     c.partitionKey=NULL;
-    break;}
     
-  }
+    
+  
 }

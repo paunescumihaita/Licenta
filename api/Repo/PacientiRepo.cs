@@ -4,6 +4,10 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using System;
 
+
+
+
+
 namespace api{
     public class PacientiRepo : IPacienti
     {
@@ -15,8 +19,67 @@ namespace api{
             .GetAwaiter()
             .GetResult();
         }
+        string sex(string a)
+        {
+            if(a[0]=='1'||a[0]=='5')
+            return "M";
+            if(a[0]=='2'||a[0]=='6')
+            return "F";
+            return "";
+
+    
+        }
+        int varsta(string a)
+        {
+            DateTime date = DateTime.Now;
+            int zi=date.Day;
+            int luna=date.Month;
+            int an=date.Year;
+            int aa1=(a[1]-'0')*10+(a[2]-'0');
+            int l=(a[3]-'0')*10+(a[4]-'0');
+            int z=(a[5]-'0')*10+(a[6]-'0');
+
+
+            if(a[0]=='1'||a[0]=='2')
+            {
+               aa1=aa1+1900;
+               if(l>luna)
+               return an-aa1;
+               else
+               {
+                   if(l==luna)
+                   {
+                       if(z>zi)
+                       return an-aa1-1;
+                       else return an-aa1;
+                   }
+                   else return an-aa1;
+               }
+            }
+            if(a[0]=='5'||a[0]=='6')
+            {
+               aa1=aa1+2000;
+               if(l>luna)
+               return an-aa1;
+               else
+               {
+                   if(l==luna)
+                   {
+                       if(z>zi)
+                       return an-aa1-1;
+                       else return an-aa1;
+                   }
+                   else return an-aa1;
+               }
+            }
+           
+            return 1;
+
+        }
         public async Task CreateNew(Pacienti u)
         {
+            u.sex=sex(u.PartitionKey);
+            u.varsta=varsta(u.PartitionKey);
             var insertop =TableOperation.Insert(u);
             await Table.ExecuteAsync(insertop);
         }

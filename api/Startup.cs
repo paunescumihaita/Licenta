@@ -31,6 +31,18 @@ namespace api
             services.AddScoped<IComanda,ComandaRepo>();
             services.AddScoped<ITransmisie,TransmisieRepo>();
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "policy",
+                                  builder =>
+                                  {
+                                      builder.WithOrigins().AllowAnyOrigin()
+                                                           .AllowAnyMethod()
+                                                           .AllowAnyHeader();
+
+
+                                  });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +63,11 @@ namespace api
             {
                 endpoints.MapControllers();
             });
+               app.UseCors(builder => builder
+                       .AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader()
+                       );
         }
     }
 }

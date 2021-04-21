@@ -1,7 +1,8 @@
 #include "Conexiune.h"
 
-SoftwareSerial esp8266 (10,3);//Arduino TX (ESP8266 RX) connected to Arduino Pin 2, Arduino RX(ESP8266 TX) connected to Arduino Pin 3
+SoftwareSerial esp8266 (8,3);//Arduino TX (ESP8266 RX) connected to Arduino Pin 2, Arduino RX(ESP8266 TX) connected to Arduino Pin 3
 Con c;
+
 String Con::atCommand(String command, int timeout) {
     String response = "";
     esp8266.println(command);
@@ -14,8 +15,9 @@ String Con::atCommand(String command, int timeout) {
             response += c;
         }
     }
-
+    
     Serial.println(response);
+    Serial.println(" d");
     return response;
 }
 
@@ -62,7 +64,7 @@ void Con::GetJson()
     String respon;
     startTCPConnection();
     respon=sendGetRequest();
-    Serial.println(respon);
+    Serial.println("fffff"+respon);
     int i;
     String a;
     char v[300];

@@ -1,5 +1,6 @@
 {
   "name": "web",
+  "homepage": "http://paunescumihai.ro/",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,24 +11,42 @@
     "test": "jest",
     "lint": "eslint ."
   },
+  "proxy": "http://paunescumihai.ro/",
   "dependencies": {
     "@babel/preset-react": "^7.13.13",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "@react-navigation/bottom-tabs": "^5.11.9",
     "@react-navigation/native": "^5.9.4",
     "axios": "^0.21.1",
     "expo-status-bar": "^1.0.3",
+    "material-ui": "^0.20.2",
+    "material-ui-search-bar": "^1.0.0",
     "mdbreact": "^5.0.2",
     "react": "17.0.1",
     "react-dom": "^17.0.2",
     "react-native": "0.64.0",
     "react-native-dashboard": "^0.0.5",
+    "react-native-elements": "^3.3.2",
+    "react-native-floating-label-input": "^1.3.5",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-paper": "^4.7.2",
+    "react-native-render-html": "^5.1.0",
+    "react-native-render-html-table-bridge": "^0.6.1",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.1.1",
+    "react-native-simple-dialogs": "^1.4.0",
+    "react-native-table-component": "^1.2.1",
+    "react-native-tree-menu-simple": "^1.0.25",
+    "react-native-vector-icons": "^8.1.0",
     "react-native-web": "^0.15.6",
+    "react-native-webview": "^11.4.0",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4",
-    "react-router-native": "^5.2.0"
+    "react-router-native": "^5.2.0",
+    "react-sidebar-ui": "^1.2.1",
+    "react-table": "^7.6.3",
+    "reactstrap": "^8.9.0"
   },
   "devDependencies": {
     "@babel/core": "7.13.15",
@@ -36,7 +55,8 @@
     "eslint": "7.14.0",
     "metro-react-native-babel-preset": "0.64.0",
     "react-scripts": "^4.0.3",
-    "react-test-renderer": "17.0.1"
+    "react-test-renderer": "17.0.1",
+    "webpack-cli": "^4.6.0"
   },
   "jest": {
     "preset": "react-native"

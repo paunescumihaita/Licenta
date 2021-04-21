@@ -46,3 +46,8 @@ C:\Users\Admin\Desktop\Aplicatie\Licenta\api\obj\Debug\netcoreapp3.1\staticwebas
 C:\Users\Admin\Desktop\Aplicatie\Licenta\api\obj\Debug\netcoreapp3.1\api.dll
 C:\Users\Admin\Desktop\Aplicatie\Licenta\api\obj\Debug\netcoreapp3.1\api.pdb
 C:\Users\Admin\Desktop\Aplicatie\Licenta\api\obj\Debug\netcoreapp3.1\api.genruntimeconfig.cache
+C:\Users\Admin\Desktop\Aplicatie\Licenta\api\bin\Debug\netcoreapp3.1\publish\web.config
+C:\Users\Admin\Desktop\Aplicatie\Licenta\api\bin\Debug\netcoreapp3.1\publish\api.deps.json
+C:\Users\Admin\Desktop\Aplicatie\Licenta\api\bin\Debug\netcoreapp3.1\publish\api.runtimeconfig.json
+C:\Users\Admin\Desktop\Aplicatie\Licenta\api\bin\Debug\netcoreapp3.1\publish\appsettings.Development.json
+C:\Users\Admin\Desktop\Aplicatie\Licenta\api\bin\Debug\netcoreapp3.1\publish\appsettings.json

@@ -15,6 +15,9 @@ namespace api{
         public int varsta{get;set;}
         public string diagnostic{get;set;}
         public string sex{get;set;}
+        public string adresa{get;set;}
+        public string telefon{get;set;}
+        public string salon{get;set;}
 
 
 

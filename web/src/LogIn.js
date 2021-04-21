@@ -1,7 +1,8 @@
 import React, { Component,useState }   from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image,ImageBackground, BackHandler} from 'react-native';
+import { StyleSheet,Dimensions, Text, View, TextInput, TouchableOpacity, Image,ImageBackground, BackHandler} from 'react-native';
 import axios from 'axios';
-
+const w=Dimensions.get('window').width
+const h= Dimensions.get('window').height
 
 
 export default class LogIn extends Component {
@@ -53,11 +54,12 @@ export default class LogIn extends Component {
     
    
   return (
-  
-    <ImageBackground source={{uri: 'http://paunescumihai.ro/web/bc.png'}} style={styles.background}>
+   
+
+    <ImageBackground source={{uri: 'http://paunescumihai.ro/bc.png'}} style={styles.background}>
      
       <View  style={styles.backmic}>
-      <Image source={{uri:'http://paunescumihai.ro/web/logo.png' }} style={styles.logo}/>
+      <Image source={{uri:'http://paunescumihai.ro/logo.png' }} style={styles.logo}/>
      
  
           <TextInput style={styles.input1} placeholder="Username" ></TextInput>
@@ -80,7 +82,7 @@ export default class LogIn extends Component {
   
  
     </ImageBackground>
- 
+   
 
   );
 }
@@ -88,12 +90,30 @@ export default class LogIn extends Component {
 
 const styles = StyleSheet.create({
  
-  background:{
-  height:678,
-  width:1422,
-  flex: 1,
+
+
+ 
+background: {
+  width: Dimensions.get('window').width,
+  height: Dimensions.get('window').height,
+
+  
+ 
+}, 
+bakcgroundImage: {
+    flex: 1, 
+    width: null, 
+    height: null
+},
+  background1:{
+  
+    height:"100%",
+   width:"100%",
+    flex: 1,
+    position:'absolute',
   flexDirection: "column",
   alignItems: 'center',
+  backgroundColor:'#000',
  
   
   
@@ -105,14 +125,14 @@ const styles = StyleSheet.create({
   
   backmic:{
     
-  height:308,
-  width:422,
+  height:"50%",
+  width:"30%",
   position: 'center', 
   backgroundColor:'#fff',
-  marginLeft:500,
-  marginRight:500,
-  marginTop:150,
-  marginBottom:185,
+  marginLeft:"35%",
+  marginRight:"35%",
+  marginTop:(0.2*h),
+  marginBottom:(0.25*h),
   flex: 1,
   flexDirection: "column",
   alignItems: 'center',
