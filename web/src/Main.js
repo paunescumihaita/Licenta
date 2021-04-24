@@ -14,7 +14,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import 'react-sidebar-ui/dist/index.css';
 import SearchBar  from 'material-ui-search-bar';
-import { ControlCameraOutlined, Update } from '@material-ui/icons';
+import './Global.js'
 
 const useStyles = makeStyles({
   table: {
@@ -22,8 +22,8 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(cnp, nume, prenume, varsta, diagnostic) {
-  return { cnp, nume, prenume, varsta, diagnostic };
+function createData(cnp, nume, prenume,salon,telefon,adresa, varsta, diagnostic) {
+  return { cnp, nume, prenume,salon,telefon,adresa,  varsta, diagnostic };
 }
 
 
@@ -48,20 +48,37 @@ export default class Main  extends React.Component
     this.searchClick = this.searchClick.bind(this);
     this.genClick = this.genClick.bind(this);
     this.ediClick = this.ediClick.bind(this);
+    this.deleteClick = this.deleteClick.bind(this);
   
 }
-ediClick(){
+deleteClick(cnp,nume)
+{
+  axios.delete('https://l05.azurewebsites.net/pacienti/delete/'+cnp+'/'+nume)  .then(res=>{alert(res.data)}
+  
+   
+   )
+ .catch((error) =>  alert (error))
+ .finally(() => { 
+  this.pacientiClick('');
+  
+  
+ });
+
+}
+ediClick(cnp, nume, prenume,salon,telefon,adresa,  varsta, diagnostic){
  
   const { navigate } = this.props.navigation;
+  global.cnp=cnp;
+  global.nume=nume;
+  global.prenume=prenume;
+  global.salon=salon;
+  global.telefon=telefon;
+  global.adresa=adresa;
+  global.varsta=varsta;
+  global.diagnostic=diagnostic;
 
-
-
-
-
-    //if(res.data==true)
-    if(true==true)
     navigate('Edit')
-    else{ alert("Autentificare esuata");}
+ 
  
 }
 genClick()
@@ -78,7 +95,7 @@ genClick()
 
      
       listPacienti.map(function(item, index){
-        rows.push(createData(item.partitionKey,item.rowKey,item.prenume,item.varsta,item.diagnostic))
+        rows.push(createData(item.partitionKey,item.rowKey,item.prenume,item.salon,item.telefon,item.adresa, item.varsta,item.diagnostic))
       }
       )
    )
@@ -107,8 +124,7 @@ searchClick()
 }
 submitPacientClick(cnp,nume,prenume,telefon,adresa, salon,diagnostic)
 {
-  
-alert(cnp)
+
   axios({
     method: 'post',
     url: 'https://l05.azurewebsites.net/pacienti/post',
@@ -210,11 +226,11 @@ adaugareClick()
                     <TableCell align="center">
                <View style={styles.actiuni1}>
 
-            <TouchableOpacity  style={styles.actiuni2}  onPress={()=>this.tratamentClick()}  >
+            <TouchableOpacity  style={styles.actiuni2}  onPress={()=>this.deleteClick(row.cnp,row.nume)}  >
           <Text style={styles.TextBtn1}>Delete</Text>
         </TouchableOpacity>
-        <TouchableOpacity  style={styles.actiuni}  onPress={()=>this.ediClick()}  >
-          <Text style={styles.TextBtn1}>Edit</Text>
+        <TouchableOpacity  style={styles.actiuni}  onPress={()=>this.ediClick(row.cnp,row.nume,row.prenume,row.salon,row.telefon,row.adresa,  row.varsta, row.diagnostic)}  >
+          <Text style={styles.TextBtn1}>Update</Text>
         </TouchableOpacity>
 
         
@@ -254,7 +270,7 @@ adaugareClick()
      if( this.state.tip=="adaugare")
      {
 
-      var cnp=" ",nume,prenume,telefon,adresa, salon,diagnostic;
+      var cnp="",nume,prenume,telefon,adresa, salon,diagnostic;
       
       return ( 
 
@@ -264,14 +280,14 @@ adaugareClick()
 
 
         <View style={styles.inputPacienti}>
-        <TextInput style={styles.input2} placeholder="CNP"   onChangeText={(CNP) =>{ cnp=CNP } }></TextInput>
+        <TextInput style={styles.input2} placeholder="CNP"  onChangeText={(CNP) =>{ cnp=CNP } }></TextInput>
         <TextInput style={styles.input2} placeholder="Nume"   onChangeText={(Nume) => nume=Nume  }></TextInput>
         <TextInput style={styles.input2} placeholder="Prenume"   onChangeText={(Prenume) => prenume=Prenume  }></TextInput>
         <TextInput style={styles.input2} placeholder="Telefon"   onChangeText={(Telefon) => telefon=Telefon }></TextInput>
         <TextInput style={styles.input2} placeholder="Adresa"   onChangeText={(Adresa) => adresa=Adresa }></TextInput>
         <TextInput style={styles.input2} placeholder="Numar Salon"   onChangeText={(Salon) => salon=Salon  }></TextInput>
         <TextInput style={styles.input2} placeholder="Diagnostic"  multiline={true}  onChangeText={(Diagnostic) => diagnostic=Diagnostic }></TextInput>
-        <TouchableOpacity  style={styles.AdaugareBtn}  onPress={()=>this.submitPacientClick(cnp,nume,prenume,telefon,adresa, salon,diagnostic)}  >
+        <TouchableOpacity  style={styles.AdaugareBtn}  onPress={()=>{this.submitPacientClick(cnp,nume,prenume,telefon,adresa, salon,diagnostic)} } >
           <Text style={styles.TextBtn}>Adaugare Pacient </Text>
         </TouchableOpacity>
 

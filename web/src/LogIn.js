@@ -12,6 +12,7 @@ export default class LogIn extends Component {
     this.state = {parola: ''};  
     this.state= {username: ''};
     this.handleClick = this.handleClick.bind(this);
+
   
     };
       handleClick(){
@@ -22,11 +23,26 @@ export default class LogIn extends Component {
     
     
       
+
+  axios({
+    method: 'post',
+    url: 'https://l05.azurewebsites.net/utilizatori/LogIn',
+    data: {
+      partitionKey:this.state.username,
+      rowKey:this.state.parola,
+      
+    }
+  }).then(res=>{
+    
+    
+    if(res.data==true)
+    navigate('Main')
+    else
+    alert("Username-ul sau parola sunt gresite")
   
-          //if(res.data==true)
-          if(true==true)
-          navigate('Main')
-          else{ alert("Autentificare esuata");}
+  })
+         // navigate('Main')
+         
        
        
       
@@ -62,11 +78,11 @@ export default class LogIn extends Component {
       <Image source={{uri:'http://paunescumihai.ro/logo.png' }} style={styles.logo}/>
      
  
-          <TextInput style={styles.input1} placeholder="Username" ></TextInput>
+          <TextInput style={styles.input1} placeholder="Username"  onChangeText={(user) =>{ this.setState({username:user}) }  }></TextInput>
     
       
     
-          <TextInput style={styles.input1} placeholder="Parola"     ></TextInput>
+          <TextInput style={styles.input1} placeholder="Parola"  onChangeText={(parola) =>{ this.setState({parola:parola}) }  }   ></TextInput>
        
         <TouchableOpacity  style={styles.LoginBtn} onPress={this.handleClick }   >
      

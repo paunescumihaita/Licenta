@@ -1,16 +1,50 @@
 import React, { Component,useState }   from 'react';
 import { StyleSheet,Dimensions,CheckBox, Text, View, TextInput, TouchableOpacity, Image,ImageBackground, BackHandler} from 'react-native';
 import axios from 'axios';
-
+import './Global.js'
 
 const w=Dimensions.get('window').width
 const h= Dimensions.get('window').height
 
 export default class Edit extends Component {
-  static navigationOptions = {
-    title: 'Second Page',
-    //Sets Header text of Status Bar
-  };
+
+  constructor(props) {  
+    super(props); 
+    this.state = {  cnp:global.cnp, nume:global.nume, prenume: global.prenume,salon: global.salon,telefon:global.telefon,adresa: global.adresa,  varsta:global.varsta, diagnostic:  global.diagnostic  }
+    this.updateClick = this.updateClick.bind(this);
+  }
+
+  updateClick(cnp,nume,prenume,telefon,adresa, salon,diagnostic)
+  {
+
+    const { navigate } = this.props.navigation;
+    axios({
+      method: 'post',
+      url: 'https://l05.azurewebsites.net/pacienti/update',
+      data: {
+        partitionKey:cnp,
+        rowKey:nume,
+        prenume:prenume,
+        telefon:telefon,
+        adresa:adresa,
+        salon:salon,
+        diagnostic:diagnostic
+      }
+    }).then(res=>{alert(res.data)})
+    .catch((error) =>  alert (error))
+ .finally(() => { 
+  navigate('Main');
+  
+  
+ });
+
+    
+
+  
+    
+    
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     var cnp=" ",nume,prenume,telefon,adresa, salon,diagnostic;
@@ -23,14 +57,14 @@ export default class Edit extends Component {
 
         <Text style={styles.TextDoc}>Update Pacient </Text>
         
-        <TextInput style={styles.input2} placeholder="CNP" flat="true" leftIcon={{ type: 'font-awesome', name: 'comment' }}   onChangeText={(CNP) =>{ cnp=CNP } }></TextInput>
-        <TextInput style={styles.input2} placeholder="Nume"   onChangeText={(Nume) => nume=Nume  }></TextInput>
-        <TextInput style={styles.input2} placeholder="Prenume"   onChangeText={(Prenume) => prenume=Prenume  }></TextInput>
-        <TextInput style={styles.input2} placeholder="Telefon"   onChangeText={(Telefon) => telefon=Telefon }></TextInput>
-        <TextInput style={styles.input2} placeholder="Adresa"   onChangeText={(Adresa) => adresa=Adresa }></TextInput>
-        <TextInput style={styles.input2} placeholder="Numar Salon"   onChangeText={(Salon) => salon=Salon  }></TextInput>
-        <TextInput style={styles.input2} placeholder="Diagnostic"  multiline={true}  onChangeText={(Diagnostic) => diagnostic=Diagnostic }></TextInput>
-        <TouchableOpacity  style={styles.AdaugareBtn}  onPress={()=>this.submitPacientClick(cnp,nume,prenume,telefon,adresa, salon,diagnostic)}  >
+        <TextInput style={styles.input2} placeholder="CNP" value={this.state.cnp}    ></TextInput>
+        <TextInput style={styles.input2} placeholder="Nume" value={this.state.nume}   ></TextInput>
+        <TextInput style={styles.input2} placeholder="Prenume"  value={this.state.prenume}  onChangeText={(Prenume) =>{ this.setState({prenume:Prenume}) }  }></TextInput>
+        <TextInput style={styles.input2} placeholder="Telefon" value={this.state.telefon}   onChangeText={(Telefon) => { this.setState({telefon:Telefon}) } }></TextInput>
+        <TextInput style={styles.input2} placeholder="Adresa"   value={this.state.adresa} onChangeText={(Adresa) =>{ this.setState({adresa:Adresa}) }}></TextInput>
+        <TextInput style={styles.input2} placeholder="Numar Salon"   value={this.state.salon} onChangeText={(Salon) => { this.setState({salon:Salon}) }  }></TextInput>
+        <TextInput style={styles.input2} placeholder="Diagnostic"  value={this.state.diagnostic} multiline={true}  onChangeText={(Diagnostic) => { this.setState({diagnostic:Diagnostic}) } }></TextInput>
+        <TouchableOpacity  style={styles.AdaugareBtn}  onPress={()=>this.updateClick(this.state.cnp,this.state.nume,this.state.prenume,this.state.telefon,this.state.adresa, this.state.salon,this.state.diagnostic)}  >
           <Text style={styles.TextBtn}>Adaugare Pacient </Text>
         </TouchableOpacity>
        

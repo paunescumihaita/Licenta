@@ -76,12 +76,54 @@ namespace api{
             return 1;
 
         }
+
+        public async Task Delete(string cnp,string nume)
+        {
+            var entityPattern = new DynamicTableEntity();
+            entityPattern.PartitionKey=cnp;
+            entityPattern.ETag = "*";
+            entityPattern.RowKey=nume;
+
+            await Table.ExecuteAsync(TableOperation.Delete(entityPattern));
+
+        }
         public async Task CreateNew(Pacienti u)
         {
             u.sex=sex(u.PartitionKey);
             u.varsta=varsta(u.PartitionKey);
             var insertop =TableOperation.Insert(u);
             await Table.ExecuteAsync(insertop);
+        }
+
+        public async Task Update(Pacienti u){
+              var v = new List<Pacienti>();
+            TableQuery<Pacienti> query=new TableQuery<Pacienti>();
+            TableContinuationToken token=null;
+            do{
+                TableQuerySegment<Pacienti> resultSegment=await Table.ExecuteQuerySegmentedAsync(query,token);
+                v.AddRange(resultSegment.Results);
+            }while(token!=null);
+             foreach( Pacienti i in v)
+             {
+                 if(i.PartitionKey==u.PartitionKey)
+                 {
+                     i.RowKey=u.RowKey;
+                     i.prenume=u.prenume;
+                     i.telefon=u.telefon;
+                     i.salon=u.salon;
+                     i.adresa=u.adresa;
+                     i.diagnostic=u.diagnostic;
+                     var operation = TableOperation.Replace(i);
+                     await Table.ExecuteAsync(operation);
+                     
+                 }
+             }
+
+
+
+
+
+
         }
 
         public async Task<List<Pacienti>> GetAll()

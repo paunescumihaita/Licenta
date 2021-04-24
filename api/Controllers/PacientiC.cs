@@ -22,6 +22,23 @@ namespace api{
         {
             return await _u.GetAll();
         }
+
+        [HttpDelete("delete/{cnp}/{nume}")]
+        public async Task<string > Delete(string cnp,string nume)
+        {
+        
+
+            try{
+                await _u.Delete(cnp,nume);
+                return "Pacientul a fost sters";
+            }
+            catch(System.Exception e)
+            {
+                return "Eroare " + e.Message;
+                throw;
+            }
+        }
+
          [HttpGet("gettest")]
         public async Task<string> Get()
         {
@@ -47,6 +64,21 @@ namespace api{
             try{
                 await _u.CreateNew(u);
                 return "S-a adaugat cu succes";
+            }
+            catch(System.Exception e)
+            {
+                return "Eroare " + e.Message;
+                throw;
+            }
+        }
+
+         [HttpPost("update")]
+        public async Task<string> Update([FromBody]Pacienti u )
+        {
+            
+            try{
+                await _u.Update(u);
+                return "S-a modificat cu succes";
             }
             catch(System.Exception e)
             {
