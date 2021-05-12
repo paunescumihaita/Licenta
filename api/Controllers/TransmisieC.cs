@@ -22,6 +22,12 @@ namespace api{
         {
             return await _u.GetAll();
         }
+
+         [HttpGet("add/{a}/{b}")]
+        public async Task<string> Get1(string a, string b)
+        {
+            return await _u.add(a,b);
+        }
         
 
 

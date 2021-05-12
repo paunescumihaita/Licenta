@@ -30,6 +30,7 @@ OCR2B=0;
 
 
 void setup() {
+  noInterrupts();
   pwm();
    pinMode(9, OUTPUT);
    pinMode(10, OUTPUT);
@@ -44,8 +45,8 @@ void setup() {
  pinMode(2, OUTPUT);
  Serial.begin(9600);
    Serial.begin(9600);
-   analogWrite(6,Contrast);
-  lcd.begin(16, 2);
+   
+
   if(nr_sal%2==0)
   {
     v=nr_sal;
@@ -54,17 +55,16 @@ void setup() {
   {
     v=nr_sal+1;
   }
-    delay(10000);
-    lcd.setCursor(0, 0);
-     lcd.print("000");
-     delay(1000);
+
+      interrupts();
+     delay(3000);
 
 }
 
 void fata()
 {while(1){
-if(digitalRead(48)==0&&digitalRead(49)==0&&digitalRead(50)==0){
-    while(digitalRead(48)==0&&digitalRead(49)==0&&digitalRead(50)==0){}
+if( digitalRead(48)==0 &&digitalRead(49)==0  && digitalRead(50)==0){
+    while( digitalRead(48)==0&&digitalRead(49)==0 && digitalRead(50)==0){}
   l++;   
   if(l%2==1)
   {
@@ -107,7 +107,7 @@ else {ld=0;ls=1;}
     ld=1;ls=1;
   }
   
-   if(digitalRead(48)==1&&digitalRead(49)==1&&digitalRead(50)==1  &&ls==0&&ld==0 &&l==v )
+   if(digitalRead(48)==1&&digitalRead(49)==1&&digitalRead(50)==1   &&l==v )
 {
   OCR0A=0;
   OCR2A=0;
@@ -123,15 +123,15 @@ if(digitalRead(50)==1  &&ld==0 )
   
   OCR2A=0;
   OCR0B=0;
-  OCR2B=180;
-  OCR0A=110;
+  OCR2B=170;
+  OCR0A=170;
 }
 else{
 if(digitalRead(48)==1 &&ls==0 )
 { OCR2B=0;
   OCR0A=0;
-  OCR2A=110;
-  OCR0B=180;
+  OCR2A=170;
+  OCR0B=170;
   
 }
 
@@ -200,16 +200,16 @@ if(digitalRead(51)==1 &&ks==0  )
 {
   OCR2A=0;
   OCR0B=0;
-  OCR2B=110;
-  OCR0A=180;
+  OCR2B=170;
+  OCR0A=170;
 
 }
 else{
 if(digitalRead(53)==1 &&kd==0)
 {  OCR2B=0;
   OCR0A=0;
-  OCR2A=180;
-  OCR0B=110;
+  OCR2A=170;
+  OCR0B=170;
   
 }
 

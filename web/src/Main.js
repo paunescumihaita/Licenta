@@ -16,6 +16,8 @@ import 'react-sidebar-ui/dist/index.css';
 import SearchBar  from 'material-ui-search-bar';
 import './Global.js'
 
+var w= Dimensions.get('window').width;
+var h= Dimensions.get('window').height;
 const useStyles = makeStyles({
   table: {
 //    minWidth: 650,
@@ -49,7 +51,25 @@ export default class Main  extends React.Component
     this.genClick = this.genClick.bind(this);
     this.ediClick = this.ediClick.bind(this);
     this.deleteClick = this.deleteClick.bind(this);
+    this.detaliiClick = this.detaliiClick.bind(this);
+   
+   
   
+  
+}
+detaliiClick(cnp,nume,prenume,salon,telefon,adresa, varsta, diagnostic)
+{
+  global.cnp1=cnp;
+  global.nume1=nume;
+  global.prenume1=prenume;
+  global.salon1=salon;
+  global.telefon1=telefon;
+  global.adresa1=adresa;
+  global.varsta1=varsta;
+  global.diagnostic1=diagnostic;
+  const { navigate } = this.props.navigation;
+  navigate('Detalii');
+
 }
 deleteClick(cnp,nume)
 {
@@ -60,6 +80,7 @@ deleteClick(cnp,nume)
  .catch((error) =>  alert (error))
  .finally(() => { 
   this.pacientiClick('');
+
   
   
  });
@@ -77,7 +98,9 @@ ediClick(cnp, nume, prenume,salon,telefon,adresa,  varsta, diagnostic){
   global.varsta=varsta;
   global.diagnostic=diagnostic;
 
-    navigate('Edit')
+    navigate('Edit');
+   
+    this.pacientiClick('');
  
  
 }
@@ -141,6 +164,9 @@ submitPacientClick(cnp,nume,prenume,telefon,adresa, salon,diagnostic)
     
   
 }
+
+
+
 adaugareClick()
 {
   
@@ -231,6 +257,9 @@ adaugareClick()
         </TouchableOpacity>
         <TouchableOpacity  style={styles.actiuni}  onPress={()=>this.ediClick(row.cnp,row.nume,row.prenume,row.salon,row.telefon,row.adresa,  row.varsta, row.diagnostic)}  >
           <Text style={styles.TextBtn1}>Update</Text>
+        </TouchableOpacity>
+        <TouchableOpacity  style={styles.actiuni3}  onPress={()=>this.detaliiClick(row.cnp,row.nume,row.prenume,row.salon,row.telefon,row.adresa,  row.varsta, row.diagnostic)}  >
+          <Text style={styles.TextBtn1}>Detalii</Text>
         </TouchableOpacity>
 
         
@@ -380,29 +409,26 @@ adaugareClick()
   }
   componentDidUpdate()
   {
-//alert("update")
+    w= Dimensions.get('window').width;
+    h= Dimensions.get('window').height;
+ 
+ 
   }
    componentDidMount()
   {
 
-
-  
     
+
    
-   
+  
 
   }
-
+ 
   render(){
   
-   
   
-   
  
-    
 
- 
-  
  
     return(
         <ImageBackground source={{uri: 'http://paunescumihai.ro/bc.png'}} style={styles.background}>
@@ -459,7 +485,7 @@ adaugareClick()
     <View>
         {this.genClick()}
         {this.allClick()}
-       
+     
 
         </View>
         
@@ -505,7 +531,7 @@ marginBottom:5,
     
   },
   bara:{
-    width: Dimensions.get('window').width-230,
+    width: w-230,
     height:  50,
   
     marginTop:0,
@@ -516,12 +542,12 @@ marginBottom:5,
   },
   tot:{
     marginTop:10,
-    height:  Dimensions.get('window').height-10,
+    height: h-10,
   },
   con:{
     marginTop:0,
     flexDirection: "colon",
-    height:  Dimensions.get('window').height,
+    height:h,
       
     justifyContent: 'top',
   },
@@ -537,14 +563,14 @@ marginBottom:5,
   
   },
   scrol:{
-    width: Dimensions.get('window').width-230,
+    width: w-230,
   //  marginTop:10,
     
     marginLeft:10,
     marginRight:10,
 
 
-    height:  Dimensions.get('window').height-160,
+    height:h-160,
   },
 
   pre:{
@@ -577,7 +603,7 @@ marginBottom:5,
     },
     bar:
     {
-      height: Dimensions.get('window').height,
+      height: h,
       width:210,
       backgroundColor:"#8EDAD9",
       marginLeft:0,
@@ -588,8 +614,8 @@ marginBottom:5,
       justifyContent: 'top',
     },
     background:{
-      width: Dimensions.get('window').width,
-      height: Dimensions.get('window').height,
+      width:w,
+      height: h,
     flex: 1,
     position:'absolute',
     flexDirection: "row",
@@ -698,6 +724,17 @@ marginBottom:5,
       width:80,
       height:15,
       backgroundColor: "#00FF00",
+      borderRadius:5,
+    //  padding:15,
+     // marginBottom:10,
+      marginTop:2
+    
+      
+    },
+    actiuni3:{
+      width:80,
+      height:15,
+      backgroundColor: "#FFA500",
       borderRadius:5,
     //  padding:15,
      // marginBottom:10,

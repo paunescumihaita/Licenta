@@ -20,6 +20,13 @@ namespace api{
             var insertop =TableOperation.Insert(u);
             await Table.ExecuteAsync(insertop);
         }
+         public async Task<string> add(string a,string b)
+        {
+            Transmisie u=new Transmisie(a,b);
+            var insertop =TableOperation.Insert(u);
+            await Table.ExecuteAsync(insertop);
+            return "succes";
+        }
 
         public async Task<List<Transmisie>> GetAll()
         {

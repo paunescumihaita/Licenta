@@ -5,6 +5,7 @@ import { createStackNavigator} from 'react-navigation-stack';
 import Main from './Main.js';
 import LogIn from './LogIn'; 
 import Edit from './Edit';
+import Detalii from './Detalii'
 
 
 const App = createStackNavigator({
@@ -16,6 +17,9 @@ const App = createStackNavigator({
     headerShown: null,
 }, }, 
   Edit: { screen: Edit, navigationOptions: {
+  headerShown: null,
+}, },
+Detalii: { screen: Detalii, navigationOptions: {
   headerShown: null,
 }, },
 

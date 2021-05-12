@@ -17,6 +17,8 @@ export default  function Home({ navigation }) {
     const [p, setp]=useState([]);
     var cnp="";
     var salon="";
+    var part="";
+    var row="";
 
     axios.get('https://l05.azurewebsites.net/pacienti/get')
         .then(res => {
@@ -46,6 +48,8 @@ export default  function Home({ navigation }) {
               p.map(i=>{
                 if(i.partitionKey == item.rowKey)
                 {
+                  part=part+"|"+i.partitionKey;
+                  row=row+"|"+i.salon;
                   nume=i.rowKey;
                   prenume=i.prenume;
                   diagnostic=i.diagnostic;
@@ -82,7 +86,7 @@ export default  function Home({ navigation }) {
                )
            })}
          </ScrollView>
-         <TouchableOpacity  style={styles.Btn}   onPressIn={()=>g(p)}  
+         <TouchableOpacity  style={styles.Btn}   onPressIn={()=>g(part,row)}  
          >
            
            <Text style={styles.card}>{("Plaseaza Tratament") }</Text>
@@ -95,22 +99,30 @@ export default  function Home({ navigation }) {
         </ImageBackground>
       );
 
-     function g()
+     function g(a,b)
       {
       
         
-        console.log("gggg");
-        people.map(element=>{
+        console.log(a);
+        console.log(b);
+       
           
-          
-         axios.get('https://l05.azurewebsites.net/tratament/change')
+         axios.get('https://l05.azurewebsites.net/transmisie/add/5/1')
             .then(res => {
               
               console.log(res);
+              alert(res.data)
+              alert("f")
            
               
-            })
-      });
+            }) .catch((error) =>  alert (error))
+            .finally(() => { alert("dddddd")
+           ;
+            
+             
+             
+            }); 
+     
         
       
       }

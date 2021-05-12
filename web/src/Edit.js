@@ -2,6 +2,7 @@ import React, { Component,useState }   from 'react';
 import { StyleSheet,Dimensions,CheckBox, Text, View, TextInput, TouchableOpacity, Image,ImageBackground, BackHandler} from 'react-native';
 import axios from 'axios';
 import './Global.js'
+import Main from './Main.js'
 
 const w=Dimensions.get('window').width
 const h= Dimensions.get('window').height
@@ -30,10 +31,11 @@ export default class Edit extends Component {
         salon:salon,
         diagnostic:diagnostic
       }
-    }).then(res=>{alert(res.data)})
+    }).then(res=>{alert(res.data); navigate('Main');} )
     .catch((error) =>  alert (error))
  .finally(() => { 
-  navigate('Main');
+;
+ 
   
   
  });
@@ -65,7 +67,7 @@ export default class Edit extends Component {
         <TextInput style={styles.input2} placeholder="Numar Salon"   value={this.state.salon} onChangeText={(Salon) => { this.setState({salon:Salon}) }  }></TextInput>
         <TextInput style={styles.input2} placeholder="Diagnostic"  value={this.state.diagnostic} multiline={true}  onChangeText={(Diagnostic) => { this.setState({diagnostic:Diagnostic}) } }></TextInput>
         <TouchableOpacity  style={styles.AdaugareBtn}  onPress={()=>this.updateClick(this.state.cnp,this.state.nume,this.state.prenume,this.state.telefon,this.state.adresa, this.state.salon,this.state.diagnostic)}  >
-          <Text style={styles.TextBtn}>Adaugare Pacient </Text>
+          <Text style={styles.TextBtn}>Update </Text>
         </TouchableOpacity>
        
 
