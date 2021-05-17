@@ -23,6 +23,22 @@ namespace api{
             return await _u.GetAll();
         }
 
+         [HttpGet("delete/{cnp}/{nume}")]
+        public async Task<string > Delete(string cnp,string nume)
+        {
+        
+
+            try{
+                await _u.Delete(cnp,nume);
+                return " sters";
+            }
+            catch(System.Exception e)
+            {
+                return "Eroare " + e.Message;
+                throw;
+            }
+        }
+
          [HttpGet("add/{a}/{b}")]
         public async Task<string> Get1(string a, string b)
         {

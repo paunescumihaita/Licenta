@@ -6,6 +6,7 @@ namespace api{
         Task<List<Transmisie>>  GetAll();
         Task CreateNew(Transmisie u);
         Task<string> add(string a,string b);
+        Task Delete(string a,string b);
        
       
     }

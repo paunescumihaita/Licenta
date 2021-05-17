@@ -10,8 +10,8 @@
 
 
 
-const String ssid = "HUAWEI-NnFn";
-const String password = "m6n87sAn";
+const String ssid = "iPhone";
+const String password = "paunescu69";
 const String path1 = "/a.php";
 const String server = "paunescumihai.ro";
 

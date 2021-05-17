@@ -99,38 +99,14 @@ void Con::GetJson()
     Serial.println(rowKey);
     closeTCPConnection();
 }
-extern String path;
+
 
 void Conexiune()
 {
   
+Serial.begin(9600);
 
-
-  c.path=path1;
-  c.request = String("GET ") + c.path + " HTTP/1.1\r\n" + "Host:" + server + "\r\n" + "Connection: keep-alive\r\n\r\n";
-  c.requestLength = String(c.request.length());
- 
-
-  while(c.partitionKey == NULL )
-  {
-    Serial.println("------------------");
-
-    c.GetJson();
-    Serial.println("------------------");
-  }
-}
-
-void stergere()
-{
-
-  String a="/c.php?p="+String(c.partitionKey)+"&r="+String(c.rowKey);
-
-  c.path=a;
-
-    c.request = String("GET ") +c.path + " HTTP/1.1\r\n" + "Host:" + server + "\r\n" + "Connection: keep-alive\r\n\r\n";
-  c.requestLength = String(c.request.length());
-
-  //while(c.partitionKey == NULL )
+  while(c.partitionKey == NULL)
   {
     Serial.println("------------------");
 

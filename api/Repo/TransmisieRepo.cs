@@ -27,7 +27,16 @@ namespace api{
             await Table.ExecuteAsync(insertop);
             return "succes";
         }
+        public async Task Delete(string cnp,string nume)
+        {
+            var entityPattern = new DynamicTableEntity();
+            entityPattern.PartitionKey=cnp;
+            entityPattern.ETag = "*";
+            entityPattern.RowKey=nume;
 
+            await Table.ExecuteAsync(TableOperation.Delete(entityPattern));
+
+        }
         public async Task<List<Transmisie>> GetAll()
         {
             var u = new List<Transmisie>();

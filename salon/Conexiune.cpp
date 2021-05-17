@@ -1,11 +1,13 @@
 #include "Conexiune.h"
 
-SoftwareSerial esp8266 (11,3);//Arduino TX (ESP8266 RX) connected to Arduino Pin 2, Arduino RX(ESP8266 TX) connected to Arduino Pin 3
+SoftwareSerial esp8266 (9,8);//Arduino TX (ESP8266 RX) connected to Arduino Pin 2, Arduino RX(ESP8266 TX) connected to Arduino Pin 3
 Con c;
   
 String Con::atCommand(String command, int timeout) {
     String response = "";
+   
     esp8266.println(command);
+    
   Serial.begin(9600);
     long int time = millis();
 
@@ -15,8 +17,6 @@ String Con::atCommand(String command, int timeout) {
             response += c;
         }
     }
-    
-    Serial.println(response);
 
     return response;
 }

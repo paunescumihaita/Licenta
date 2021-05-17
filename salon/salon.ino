@@ -27,7 +27,6 @@ OCR2B=0;
 
 
 
-
 void setup() {
     Serial.begin(9600);
 Serial.println("ffff1");
@@ -116,7 +115,7 @@ else {ld=0;ls=1;}
   OCR2A=0;
   OCR0B=0;
   OCR2B=0;
-  delay(500);
+  delay(1000);
   break;
  
 }
@@ -196,7 +195,7 @@ if(digitalRead(51)==0&&digitalRead(52)==0&&digitalRead(53)==0){
   OCR2A=0;
   OCR0B=0;
   OCR2B=0;
-  delay(500);
+  delay(10000);
   break;
 }
 else
@@ -233,32 +232,20 @@ else
 
 int t=nr_sal+1;
 void loop() {
- l=0;
- k=0;
-Serial.println("ffff");
 
+  digitalWrite(2,HIGH);
+  Serial.println("looop1");
+c.partitionKey=NULL;
    Conexiune();
-   Serial.println("ffdddddddddff");
+ Serial.println("looop2");
   
 
-nr_sal=c.partitionKey[0]-'0';
-   Serial.println(nr_sal);
+//nr_sal=c.partitionKey[0]-'0';
+  // Serial.println(nr_sal);
+ 
+ //c.partitionKey=NULL;
+// c.rowKey=NULL;
 
- if(nr_sal%2==0)
-  {
-    v=nr_sal;
-  }
-  else
-  {
-    v=nr_sal+1;
-  }
- fata();
- spate();
- stergere();
- c.partitionKey=NULL;
- c.rowKey=NULL;
- l=0;
- k=0;
 
 
 }

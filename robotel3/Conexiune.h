@@ -7,17 +7,17 @@
 #include <SoftwareSerial.h>
 #include <WiFi.h>
 #include <ArduinoJson.h>
-
+  
 
 
 const String ssid = "HUAWEI-NnFn";
 const String password = "m6n87sAn";
-const String path1 = "/a.php";
+const String path = "/a.php";
 const String server = "paunescumihai.ro";
-
+const String request = String("GET ") + path + " HTTP/1.1\r\n" + "Host:" + server + "\r\n" + "Connection: keep-alive\r\n\r\n";
+const String requestLength = String(request.length());
 const int timeout = 2000;
 extern void Conexiune();
-extern void stergere();
 
 
 class Con {
@@ -27,9 +27,9 @@ private:
     String atCommand(String command, int timeout);
     void setupESP8266();
     void connectToWiFi();
-       void startTCPConnection();
-    
- //   String sendGetRequest();
+   
+    void closeTCPConnection();
+    String sendGetRequest();
     
 public:
     void GetJson();
@@ -37,12 +37,8 @@ public:
     StaticJsonDocument<200> doc;
     char *partitionKey=NULL;
     char *rowKey=NULL;
+     void startTCPConnection();
 
-     String requestLength;
-  String sendGetRequest();
-     String path = " ";
-     String request="";
-     void closeTCPConnection();
 };
 
 extern Con c;

@@ -1,6 +1,5 @@
-#include <LiquidCrystal.h> 
-int Contrast=75;
- LiquidCrystal lcd(12, 11, 5, 7, 3, 2);  
+#include "Conexiune.h"
+#include <Wire.h> 
  int ks=0,kd=0;
  int k=0;
 int l=0;
@@ -22,7 +21,7 @@ OCR0B=0;
 OCR2A=0;
 OCR2B=0;
 
-  delay(3000);
+ // delay(3000);
   
 }
 
@@ -30,6 +29,10 @@ OCR2B=0;
 
 
 void setup() {
+    Serial.begin(9600);
+Serial.println("ffff1");
+ c.Conexiune_init();
+ Serial.println("ffff2");
   noInterrupts();
   pwm();
    pinMode(9, OUTPUT);
@@ -43,9 +46,9 @@ void setup() {
  pinMode(52, INPUT);
  pinMode(53, INPUT);
  pinMode(2, OUTPUT);
- Serial.begin(9600);
-   Serial.begin(9600);
+
    
+
 
   if(nr_sal%2==0)
   {
@@ -57,7 +60,7 @@ void setup() {
   }
 
       interrupts();
-     delay(3000);
+ //    delay(3000);
 
 }
 
@@ -229,6 +232,14 @@ else
 
 int t=nr_sal+1;
 void loop() {
+
+Serial.println("ffff");
+   Conexiune();
+   Serial.println("ffdddddddddff");
+    
+nr_sal=c.partitionKey;
+   Serial.println(nr_sal);
+c.partitionKey=NULL;
  if(nr_sal%2==0)
   {
     v=nr_sal;
@@ -239,8 +250,6 @@ void loop() {
   }
  fata();
  spate();
-k=0;
-l=0;
-  nr_sal++;
+
 
 }

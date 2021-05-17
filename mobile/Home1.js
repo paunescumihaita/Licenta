@@ -48,8 +48,10 @@ export default  function Home({ navigation }) {
               p.map(i=>{
                 if(i.partitionKey == item.rowKey)
                 {
-                  part=part+"|"+i.partitionKey;
-                  row=row+"|"+i.salon;
+               //   part=part+"|"+i.partitionKey;
+                //  row=row+"|"+i.salon;
+                  part=i.partitionKey;
+                  row=i.salon;          
                   nume=i.rowKey;
                   prenume=i.prenume;
                   diagnostic=i.diagnostic;
@@ -107,17 +109,17 @@ export default  function Home({ navigation }) {
         console.log(b);
        
           
-         axios.get('https://l05.azurewebsites.net/transmisie/add/5/1')
+         axios.get('http://www.paunescumihai.ro/b.php?p='+b+'&r='+a)
             .then(res => {
               
               console.log(res);
               alert(res.data)
-              alert("f")
+            
            
               
             }) .catch((error) =>  alert (error))
-            .finally(() => { alert("dddddd")
-           ;
+            .finally(() => { 
+           
             
              
              
