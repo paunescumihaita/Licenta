@@ -20,11 +20,11 @@ export default  function Home({ navigation }) {
     var part="";
     var row="";
 
-    axios.get('https://l05.azurewebsites.net/pacienti/get')
+    axios.get('http://paunescumihai.ro/pacientiget.php')
         .then(res => {
         setp(res.data);
        })
-    axios.get(`https://l05.azurewebsites.net/tratament/icon`)
+    axios.get(`http://paunescumihai.ro/tratamenticon.php`)
           .then(res => {
              //persons = res.data;
             
@@ -114,14 +114,13 @@ export default  function Home({ navigation }) {
       {
       
         
-        console.log(a);
-        console.log(b);
+       
        
           
          axios.get('http://www.paunescumihai.ro/b.php?p='+b+'&r='+a)
             .then(res => {
               
-              console.log(res);
+             
               alert(res.data)
             
            

@@ -42,16 +42,15 @@ export default class PacientiDetail  extends React.Component
     
 
   }
-    componentDidMount()
-    {
-        axios.get(`https://l05.azurewebsites.net/pacienti/getId/`+ global.mihai)
+  componentDidMount(){
+    axios.get(`http://paunescumihai.ro/pacientigetid.php?p=`+ global.mihai)
       .then(res => {
         const person = res.data;
         this.setState({ person });
       })
     
-console.log("initttt")
-      axios.get(`https://l05.azurewebsites.net/tratament/get/`+ global.mihai)
+
+      axios.get(`http://paunescumihai.ro/tratament.php?p=`+ global.mihai)
       .then(res => {
         const tratament = res.data;
        
@@ -60,9 +59,11 @@ console.log("initttt")
         
       })
    
-
-    }
+  }
    
+   
+
+    
 
 
     
@@ -98,16 +99,18 @@ console.log("initttt")
         <Text style={styles.card}>{(a.prenume)}</Text>
         <View style={styles.vert1}>
         <TouchableOpacity  style={styles.Btn} onPress={()=>g()}    >
-        {
-        console.log(global.mihai)
-        }
+        
        <Text style={styles.varsta}>{("Varsta") }</Text>
        <Text style={styles.card}>{(a.varsta)}</Text>
       </TouchableOpacity>
-      <Text >{("       ")}</Text>
+    <Text>    </Text>
       <TouchableOpacity  style={styles.Btn}    >
        <Text style={styles.varsta}>{("Sex") }</Text>
        <Text style={styles.card}>{(a.sex)}</Text>
+      </TouchableOpacity><Text>    </Text>
+      <TouchableOpacity  style={styles.Btn}    >
+       <Text style={styles.varsta}>{("Salon") }</Text>
+       <Text style={styles.card}>{(a.salon)}</Text>
       </TouchableOpacity>
       </View>
         </View>
@@ -146,7 +149,7 @@ console.log("initttt")
               <TouchableOpacity  onPress={()=>this.handleClick(item.partitionKey,item.icon)}  >
   
               <Image source={f(item.icon)} style={styles.add} />
-              { console.log(ora+"  "+min)}
+           
               </TouchableOpacity>
               </View>
           
@@ -174,8 +177,8 @@ const styles = StyleSheet.create({
       height:"100%"
     },
     ic_utilizator:{
-      width:150,
-       height:150,
+      width:120,
+       height:120,
        marginLeft:1,
      
     
@@ -241,8 +244,9 @@ const styles = StyleSheet.create({
     flexDirection:'row',
    },
    vert1:{
-    //marginTop:30,\
-    marginLeft:9,
+    marginTop:16,
+    marginLeft:2,
+
 
     flexDirection:'row',
    },
@@ -290,8 +294,8 @@ const styles = StyleSheet.create({
 
     },
     Btn:{
-      width:65, 
-      height:65,
+      width:60, 
+      height:60,
       alignItems: 'center',
     //  height:70,
       borderRadius:10,

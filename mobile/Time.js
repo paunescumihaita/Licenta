@@ -42,9 +42,18 @@ export default class PacientiDetail  extends React.Component
     
 
   }
+  componentDidUpdate(){
+    axios.get('http://paunescumihai.ro/tratamentsort.php')
+      .then(res => {
+        const tratament = res.data;
+       
+        this.setState({ tratament });
+  
+      })
+  }
     componentDidMount()
     {
-      axios.get('https://l05.azurewebsites.net/tratament/get/sort')
+      axios.get('http://paunescumihai.ro/tratamentsort.php')
       .then(res => {
         const tratament = res.data;
        
@@ -87,7 +96,7 @@ export default class PacientiDetail  extends React.Component
         <View style={styles.vv}>
        
      
-      <ScrollView style={styles.scrol}>
+      <ScrollView  style={styles.scrol}>
       
       { tr.map(item=>{
           const a= item.idDoctor;
@@ -96,7 +105,7 @@ export default class PacientiDetail  extends React.Component
          
 
           return(
-            <View>
+            <View  key={(item.partitionKey+10000)} >
             {(() => {
                 var d=ss.length-1;
               if ( ora.localeCompare(ss[d])){
@@ -105,7 +114,7 @@ export default class PacientiDetail  extends React.Component
             
                 
                   return (
-                    <TouchableOpacity  key={ora+1000} style={styles.Btn3}    >
+                    <TouchableOpacity  key={(ora+1000)} style={styles.Btn3}    >
                     <View style={styles.med} >
                      <Text style={styles.trat}>{(ora)}</Text>              
                      </View>
@@ -115,8 +124,8 @@ export default class PacientiDetail  extends React.Component
               
               return null;
             })()}
-           
-            <TouchableOpacity  key={item.partitionKey} style={styles.Btn1}    >
+                                    
+            <TouchableOpacity  key={(item.partitionKey)} style={styles.Btn1}    >
             <View style={styles.scvert}>
               <View style={styles.med} >
                 <Text style={styles.trat}>{(item.idMedicament1)}</Text>
@@ -135,7 +144,7 @@ export default class PacientiDetail  extends React.Component
               <TouchableOpacity  onPress={()=>this.handleClick(item.partitionKey,item.icon)}  >
   
               <Image source={f(item.icon)} style={styles.add} />
-              { console.log(ora+"  "+min)}
+            
               </TouchableOpacity>
               </View>
           
