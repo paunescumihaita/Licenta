@@ -30,6 +30,7 @@ namespace api
             services.AddScoped<ITratament,TratamentRepo>();
             services.AddScoped<IComanda,ComandaRepo>();
             services.AddScoped<ITransmisie,TransmisieRepo>();
+            services.AddScoped<ISalon,SalonRepo>();
             services.AddControllers();
             services.AddCors(options =>
             {

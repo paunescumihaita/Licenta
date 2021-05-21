@@ -31,35 +31,11 @@ void setup() {
     Serial.begin(9600);
 Serial.println("ffff1");
  c.Conexiune_init();
- Serial.println("ffff2");
-  noInterrupts();
-  pwm();
-   pinMode(9, OUTPUT);
-   pinMode(10, OUTPUT);
-   pinMode(4, OUTPUT);
-   pinMode(13, OUTPUT);
-  pinMode(48, INPUT);
- pinMode(49, INPUT);
- pinMode(50, INPUT);
- pinMode(51, INPUT);
- pinMode(52, INPUT);
- pinMode(53, INPUT);
- pinMode(2, OUTPUT);
 
    
 
 
-  if(nr_sal%2==0)
-  {
-    v=nr_sal;
-  }
-  else
-  {
-    v=nr_sal+1;
-  }
-
-      interrupts();
- //    delay(3000);
+ 
 
 }
 
@@ -233,11 +209,12 @@ else
 int t=nr_sal+1;
 void loop() {
 
-  digitalWrite(2,HIGH);
+
+ // digitalWrite(2,HIGH);
   Serial.println("looop1");
 c.partitionKey=NULL;
    Conexiune();
- Serial.println("looop2");
+ //Serial.println("looop2");
   
 
 //nr_sal=c.partitionKey[0]-'0';

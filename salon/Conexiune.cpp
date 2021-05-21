@@ -1,6 +1,6 @@
 #include "Conexiune.h"
 
-SoftwareSerial esp8266 (9,8);//Arduino TX (ESP8266 RX) connected to Arduino Pin 2, Arduino RX(ESP8266 TX) connected to Arduino Pin 3
+SoftwareSerial esp8266 (3,2);//Arduino TX (ESP8266 RX) connected to Arduino Pin 2, Arduino RX(ESP8266 TX) connected to Arduino Pin 3
 Con c;
   
 String Con::atCommand(String command, int timeout) {

@@ -3,9 +3,15 @@
  int ks=0,kd=0;
  int k=0;
 int l=0;
-
+extern String st[2];
 int ls=0,ld=0,nr_sal=1;
 int v;
+
+int i=2;
+int par=0;
+void spate();
+void go_main();
+void fata();
 void pwm()
 {
   
@@ -60,14 +66,26 @@ Serial.println("ffff1");
   }
 
       interrupts();
- //    delay(3000);
+     delay(3000);
 
 }
 
 void fata()
-{while(1){
+{
+    nr_sal=st[par][0]-'0';
+  
+
+ if(nr_sal%2==0)
+  {
+    v=nr_sal;
+  }
+  else
+  {
+    v=nr_sal+1;
+  }
+  while(1){
 if( digitalRead(48)==0 &&digitalRead(49)==0  && digitalRead(50)==0){
-  //  while( digitalRead(48)==0&&digitalRead(49)==0 && digitalRead(50)==0){}
+
   l++;   
   if(l%2==1)
   {
@@ -147,14 +165,53 @@ else
   OCR2B=60;
 }}
 }
+ par++;
+if(par<i)
+{
+ 
+
+  
+  k=0;
+  go_main();
+  
+}
+else
+ {
+  k=0;
+  spate();
 }
 
 
-void spate()
+
+
+}
+
+void go_main()
 {
+
    while(1){
+if( digitalRead(48)==0 &&digitalRead(49)==0  && digitalRead(50)==0 && k==2){
+
+
+          OCR0A=0;
+  OCR2A=0;
+  OCR0B=0;
+  OCR2B=0;
+
+delay(1000);
+l=l-2;
+ 
+fata();
+break;
+    
+
+delay(200);
+  
+  }
+
+    
 if(digitalRead(51)==0&&digitalRead(52)==0&&digitalRead(53)==0){
-  //  while(digitalRead(51)==0&&digitalRead(52)==0&&digitalRead(53)==0){}
+
   k++;  if(k%2==1)
   {
     digitalWrite(2, HIGH);
@@ -186,6 +243,96 @@ if(digitalRead(51)==0&&digitalRead(52)==0&&digitalRead(53)==0){
     {
        ks=1;kd=1;
     }
+  
+
+
+
+  
+
+ if(digitalRead(51)==1&&digitalRead(52)==1&&digitalRead(53)==1 &&k==(v))
+{
+  OCR0A=0;
+  OCR2A=0;
+  OCR0B=0;
+  OCR2B=0;
+  delay(500);
+  break;
+}
+else
+if(digitalRead(51)==1 &&ks==0  )
+{
+  OCR2A=0;
+  OCR0B=0;
+  OCR2B=170;
+  OCR0A=170;
+
+}
+else{
+if(digitalRead(53)==1 &&kd==0)
+{  OCR2B=0;
+  OCR0A=0;
+  OCR2A=170;
+  OCR0B=170;
+  
+}
+
+else
+
+{
+  OCR0B=0;
+  OCR2B=0;
+  OCR0A=60;
+  OCR2A=60;
+
+}}
+  
+}
+
+
+  
+}
+
+
+
+void spate()
+{
+  
+    while(1){
+if(digitalRead(51)==0&&digitalRead(52)==0&&digitalRead(53)==0){
+
+  k++;  if(k%2==1)
+  {
+    digitalWrite(2, HIGH);
+  }
+  else
+  {
+    digitalWrite(2, LOW);
+  }
+  delay(200);
+   }
+  if(k==1)
+  {
+    if(nr_sal%2==0)
+    {
+      ks=1;kd=0;
+    }
+    else
+    {
+      ks=0;kd=1;
+    }
+  }
+  else 
+  if(k%2==0)
+  {
+    ks=0;kd=0;
+  }
+  else
+    if(k%2==1)
+    {
+       ks=1;kd=1;
+    }
+  
+
 
 
   
@@ -241,24 +388,17 @@ Serial.println("ffff");
    Serial.println("ffdddddddddff");
   
 
-nr_sal=c.partitionKey[0]-'0';
-   Serial.println(nr_sal);
+//nr_sal=c.partitionKey[0]-'0';
 
- if(nr_sal%2==0)
-  {
-    v=nr_sal;
-  }
-  else
-  {
-    v=nr_sal+1;
-  }
  fata();
- spate();
+ //spate();
+ 
  stergere();
  c.partitionKey=NULL;
  c.rowKey=NULL;
  l=0;
  k=0;
+ par=0;
 
 
 }

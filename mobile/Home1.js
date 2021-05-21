@@ -48,10 +48,19 @@ export default  function Home({ navigation }) {
               p.map(i=>{
                 if(i.partitionKey == item.rowKey)
                 {
-               //   part=part+"|"+i.partitionKey;
-                //  row=row+"|"+i.salon;
+                  if(part=="")
+                  {
+
                   part=i.partitionKey;
-                  row=i.salon;          
+                  row=i.salon;
+                  }
+                  else{
+                    part=part+"|"+i.partitionKey;
+                    row=row+"|"+i.salon;
+
+                  }
+                 
+                       
                   nume=i.rowKey;
                   prenume=i.prenume;
                   diagnostic=i.diagnostic;

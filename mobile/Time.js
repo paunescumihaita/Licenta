@@ -15,7 +15,7 @@ export default class PacientiDetail  extends React.Component
   handleClick( a,b) {
     if(b=="1")
     {
-      axios.get(`https://l05.azurewebsites.net/tratament/time/`+ a+'/0')
+      axios.get('http://paunescumihai.ro/icon2.php?a='+a+'&b='+'0')
       .then(res => {
         const tratament = res.data;
        
@@ -26,7 +26,7 @@ export default class PacientiDetail  extends React.Component
       })
     }
     else{
-      axios.get(`https://l05.azurewebsites.net/tratament/time/`+ a+'/1')
+      axios.get('http://paunescumihai.ro/icon2.php?a='+a+'&b='+'1')
       .then(res => {
         const tratament = res.data;
        
