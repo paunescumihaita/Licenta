@@ -2,10 +2,12 @@
 
 SoftwareSerial esp8266 (11,3);//Arduino TX (ESP8266 RX) connected to Arduino Pin 2, Arduino RX(ESP8266 TX) connected to Arduino Pin 3
 Con c;
-String st[2];
+String st[5];
+String dt[5];
+int parf=0;
 String getValue(String data, char separator, int index);
-
-
+int par;
+int func(char*p);
 String Con::atCommand(String command, int timeout) {
     String response = "";
     esp8266.println(command);
@@ -96,10 +98,20 @@ void Con::GetJson()
   
     rowKey = doc["rowKey"];
 
-    
-    st[0]=getValue(partitionKey,'|',0);
-    st[1]=getValue(partitionKey,'|',1);
 
+
+Serial.println(c.partitionKey);
+
+    Serial.println(c.rowKey);
+    parf=func(partitionKey);
+    for(int i=0;i<=parf+1;i++){
+    
+    st[i]=getValue(partitionKey,'|',i);
+    Serial.println(st[i]);
+
+    dt[i]=getValue(rowKey,'|',i);
+ 
+    }
    
 
     Serial.println(partitionKey);
@@ -128,24 +140,6 @@ void Conexiune()
   }
 }
 
-void stergere()
-{
-
-  String a="/c.php?p="+String(c.partitionKey)+"&r="+String(c.rowKey);
-
-  c.path=a;
-
-    c.request = String("GET ") +c.path + " HTTP/1.1\r\n" + "Host:" + server + "\r\n" + "Connection: keep-alive\r\n\r\n";
-  c.requestLength = String(c.request.length());
-
-  //while(c.partitionKey == NULL )
-  {
-    Serial.println("------------------");
-
-    c.GetJson();
-    Serial.println("------------------");
-  }
-}
 
 String getValue(String data, char separator, int index)
 {
@@ -161,4 +155,117 @@ String getValue(String data, char separator, int index)
         }
     }
     return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
+}
+
+
+
+
+
+void startTCPConnection() {
+  String connect PROGMEM = "AT+CIPSTART=\"TCP\",\"" + server + "\",80";
+  c.atCommand(connect, timeout);
+}
+
+void closeTCPConnection() {
+  c.atCommand("AT+CIPCLOSE", timeout);
+}
+
+String sendGetRequestclose(String request12,String len) {
+
+ 
+  c.atCommand("AT+CIPSEND="+len ,  timeout);
+  String response  = c.atCommand(request12, 6000);
+  Serial.println("jjjjjjjj");
+
+
+  return response;
+}
+
+
+void stergere()
+{
+  digitalWrite(2, HIGH);
+  String a="/c.php?p="+String(c.partitionKey)+"&r="+String(c.rowKey);
+
+  
+ 
+   
+    String request = String("GET ") +a + " HTTP/1.1\r\n" + "Host:" + server + "\r\n" + "Connection: keep-alive\r\n\r\n";
+   String requestLength =String( request.length());
+  Serial.println( c.request);
+
+  
+    String respon;
+    startTCPConnection();
+
+    respon=sendGetRequestclose(request,requestLength);
+
+    closeTCPConnection();
+
+//  //while(c.partitionKey == NULL )
+//  {
+//    Serial.println("------------------");
+//
+//    c.GetJson();
+//    Serial.println("------------------");
+//  }
+}
+
+
+void adaugare()
+{
+
+   String a="/d.php?p="+dt[par]+"&r="+dt[par];
+
+
+
+    String b = String("GET ") +a + " HTTP/1.1\r\n" + "Host:" + server + "\r\n" + "Connection: keep-alive\r\n\r\n";
+  String r = "99";
+while(1){
+  startTCPConnection();
+String   res=sendGetRequestclose(b,r);
+
+
+ if(res.indexOf("succes") > 0)break;
+
+}
+
+  
+
+  
+}
+void sters()
+{
+
+   String a="/s.php";
+
+
+
+    String b = String("GET ") +a + " HTTP/1.1\r\n" + "Host:" + server + "\r\n" + "Connection: keep-alive\r\n\r\n";
+  String r = "76";
+while(1){
+  startTCPConnection();
+String   res=sendGetRequestclose(b,r);
+
+
+ if(res.indexOf("[]") > 0)break;
+
+}
+
+  
+
+  
+}
+
+
+
+int func(char *p)
+{
+  int i;
+  int l=0;
+  for(i=0;i<strlen(p);i++)
+  {
+    if(p[i]=='|')l++;
+  }
+  return l;
 }

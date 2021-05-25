@@ -12,12 +12,14 @@ const String server = "paunescumihai.ro";
 const String request = String("GET ") + path + " HTTP/1.1\r\n" + "Host:" + server + "\r\n" + "Connection: keep-alive\r\n\r\n";
  String   requestLength  = String(request.length());
 char v[450];
-const int timeout = 1000;
+const int timeout = 2000;
 const char* nume="Paunescu";
 const char* prenume="Mihaita";
-const char* CNP="1980213";
+const char* CNP="1980214";
 
-LiquidCrystal_I2C lcd(0x27,16,2);
+#include <LiquidCrystal.h> 
+int Contrast=100;
+ LiquidCrystal lcd(12, 11, 5, 10,9 , 8);  
 #include <SoftwareSerial.h>
 SoftwareSerial esp8266 (2, 3); //Arduino TX (ESP8266 RX) connected to Arduino Pin 2, Arduino RX(ESP8266 TX) connected to Arduino Pin 
 //
@@ -29,9 +31,8 @@ void setup() {
 
   Serial.begin(9600);
   esp8266.begin(9600);
-  lcd.init();
-  lcd.setCursor(1, 0);
-    lcd.backlight();
+ analogWrite(6,Contrast);
+     lcd.begin(16, 2);
   lcd.print("aici");
 pinMode(4,INPUT);
 
@@ -147,7 +148,7 @@ void setupESP8266() {
 
 void connectToWiFi() {
   String connect PROGMEM = "AT+CWJAP=\"" + ssid + "\",\"" + password + "\"";
-  atCommand(connect, 1000);
+  atCommand(connect, 6000);
   atCommand("AT+CIFSR", timeout);
 }
 
@@ -162,14 +163,14 @@ void closeTCPConnection() {
 
 String sendGetRequest() {
   atCommand("AT+CIPSEND=70" , timeout);
-  String response  = atCommand(request, 1000);
+  String response  = atCommand(request, 6000);
 
   return response;
 }
 
 String sendGetRequest1(String a) {
   atCommand("AT+CIPSEND=95" , timeout);
-  String response  = atCommand(a, 1000);
+  String response  = atCommand(a, 6000);
 
   return response;
 }

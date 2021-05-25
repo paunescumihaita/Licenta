@@ -18,13 +18,16 @@ const String server = "paunescumihai.ro";
 const int timeout = 2000;
 extern void Conexiune();
 extern void stergere();
+extern void adaugare();
+extern void sters();
 
 
+extern int par;
 class Con {
 private:
     
     String result;
-    String atCommand(String command, int timeout);
+  
     void setupESP8266();
     void connectToWiFi();
        void startTCPConnection();
@@ -32,6 +35,7 @@ private:
  //   String sendGetRequest();
     
 public:
+  String atCommand(String command, int timeout);
     void GetJson();
     void Conexiune_init();   
     StaticJsonDocument<200> doc;

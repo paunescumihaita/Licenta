@@ -3,12 +3,12 @@
  int ks=0,kd=0;
  int k=0;
 int l=0;
-extern String st[2];
+extern String st[5];
 int ls=0,ld=0,nr_sal=1;
 int v;
 
 int i=2;
-int par=0;
+extern int parf;
 void spate();
 void go_main();
 void fata();
@@ -54,7 +54,7 @@ Serial.println("ffff1");
  pinMode(2, OUTPUT);
 
    
-
+par=0;
 
   if(nr_sal%2==0)
   {
@@ -66,7 +66,7 @@ Serial.println("ffff1");
   }
 
       interrupts();
-     delay(3000);
+     delay(1600);
 
 }
 
@@ -165,8 +165,12 @@ else
   OCR2B=60;
 }}
 }
+
+adaugare();
+sters();
+
  par++;
-if(par<i)
+if(par<parf+1)
 {
  
 
@@ -179,6 +183,7 @@ else
  {
   k=0;
   spate();
+  stergere();
 }
 
 
@@ -198,7 +203,7 @@ if( digitalRead(48)==0 &&digitalRead(49)==0  && digitalRead(50)==0 && k==2){
   OCR0B=0;
   OCR2B=0;
 
-delay(1000);
+delay(200);
 l=l-2;
  
 fata();
@@ -384,9 +389,9 @@ void loop() {
  k=0;
 Serial.println("ffff");
 
-   Conexiune();
+   Conexiune(); 
    Serial.println("ffdddddddddff");
-  
+ 
 
 //nr_sal=c.partitionKey[0]-'0';
 
